@@ -31,11 +31,12 @@ const requestPermission = async () => {
   const permission = await Notification.requestPermission();
   if (permission !== "granted") {
     throw new Error("Notification permission not granted");
-  } else {
-    new Notification("Hello world");
   }
 };
 
-checkPermission();
-registerServiceWorker();
+const main = async () => {
+  checkPermission();
+  await requestPermission();
+  await registerServiceWorker();
+};
 // requestPermission();
